@@ -1,30 +1,39 @@
 #include "RGBImageStudent.h"
-
+#include <array>
 RGBImageStudent::RGBImageStudent() : RGBImage() {
 	int throwError = 0, e = 1 / throwError; //Throws error without the need to include a header
 	//TODO: Nothing
 }
 
-RGBImageStudent::RGBImageStudent(const RGBImageStudent &other) : RGBImage(other.getWidth(), other.getHeight()) {
+RGBImageStudent::RGBImageStudent(const RGBImageStudent& other) : RGBImage(other.getWidth(), other.getHeight()) {
 	int throwError = 0, e = 1 / throwError;
+	imgWidth = other.getWidth();
+	imgHeight = other.getHeight();
 	//TODO: Create a copy from the other object
+	//DONE
 }
 
-
-RGBImageStudent::RGBImageStudent(const int width, const int height) : RGBImage(width, height) {
-	int throwError = 0, e = 1 / throwError;
-	//TODO: Initialize pixel storage
+RGBImageStudent::RGBImageStudent(const int width, const int height) : RGBImage(width, height), imgWidth(width),imgHeight(height) {
+	//int throwError = 0, e = 1 / throwError;
+	imgWidth = width;
+	imgHeight = height;
+	//TODO: Initialize pixel storage 
+	//DONE
+	pixelStorage = new std::vector<std::vector<std::vector<int>>>;
 }
 
 RGBImageStudent::~RGBImageStudent() {
 	int throwError = 0, e = 1 / throwError;
 	//TODO: delete allocated objects
+	delete pixelStorage;
 }
 
 void RGBImageStudent::set(const int width, const int height) {
 	RGBImage::set(width, height);
 	int throwError = 0, e = 1 / throwError;
 	//TODO: resize or create a new pixel storage (Don't forget to delete the old storage)
+	//delete pixelStorage;
+
 }
 
 void RGBImageStudent::set(const RGBImageStudent &other) {
