@@ -12,7 +12,7 @@ class RGBImageStudent : public RGBImage {
 private:
 	int imgWidth;
 	int imgHeight;
-	std::vector < std::vector<std::vector<int>>> * pixelStorage;
+	std::vector<RGB> pixelStorage;
 public:
 
 	RGBImageStudent();
