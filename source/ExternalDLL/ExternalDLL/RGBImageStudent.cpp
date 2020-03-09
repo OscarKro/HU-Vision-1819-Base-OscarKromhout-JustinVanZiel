@@ -1,7 +1,7 @@
 #include "RGBImageStudent.h"
 #include <array>
 RGBImageStudent::RGBImageStudent() : RGBImage() {
-	int throwError = 0, e = 1 / throwError; //Throws error without the need to include a header
+	//int throwError = 0, e = 1 / throwError; //Throws error without the need to include a header
 	//TODO: Nothing
 }
 
@@ -27,9 +27,10 @@ RGBImageStudent::RGBImageStudent(const int width, const int height) : RGBImage(w
 	//TODO: Initialize pixel storage 
 }
 
-//RGBImageStudent::~RGBImageStudent() {
-//	//TODO: delete allocated objects
-//}
+RGBImageStudent::~RGBImageStudent() {
+	//TODO: delete allocated objects
+	return;
+}
 
 void RGBImageStudent::set(const int width, const int height) {
 	RGBImage::set(width, height);
