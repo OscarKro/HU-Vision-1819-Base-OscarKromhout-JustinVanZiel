@@ -1,8 +1,20 @@
 #include "StudentPreProcessing.h"
-
+#include "IntensityImageStudent.h"
+#include "PixelType.h"
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
-	return nullptr;
+	IntensityImageStudent* newIntensityImage = new IntensityImageStudent(image.getWidth(), image.getHeight());
+
+	int loopCount = image.getWidth() * image.getHeight();
+
+	for (int i = 0; i < loopCount; i++)
+	{
+		auto oldRGB = image.getPixel(i);
+		Intensity newIntensityPixel = (oldRGB.r + oldRGB.g + oldRGB.b) / 3;
+		newIntensityImage->setPixel(i, newIntensityPixel);
+	}
+
+	return newIntensityImage;
 }
 
 IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &image) const {

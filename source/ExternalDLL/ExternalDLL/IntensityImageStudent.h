@@ -8,6 +8,7 @@
 #include "IntensityImage.h"
 #include <iostream>
 #include <vector>
+#include "RGBImage.h"
 class IntensityImageStudent : public IntensityImage {
 private:
 	int imgWidth;
@@ -17,6 +18,7 @@ public:
 	IntensityImageStudent();
 	IntensityImageStudent(const IntensityImageStudent &other);
 	IntensityImageStudent(const int width, const int height);
+	IntensityImageStudent(const RGBImage& image);
 	~IntensityImageStudent();
 
 	void set(const int width, const int height);
