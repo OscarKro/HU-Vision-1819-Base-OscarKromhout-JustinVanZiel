@@ -11,6 +11,7 @@ IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &imag
 	{
 		auto oldRGB = image.getPixel(i);
 		Intensity newIntensityPixel = (oldRGB.r + oldRGB.g + oldRGB.b) / 3;
+		//Intensity newIntensityPixel = 0;
 		newIntensityImage->setPixel(i, newIntensityPixel);
 	}
 
