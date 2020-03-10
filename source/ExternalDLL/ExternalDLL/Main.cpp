@@ -47,7 +47,6 @@ int main(int argc, char * argv[]) {
 
 
 		if (executeSteps(executor)) {
-			std::cout << "Face recognition successful!" << std::endl;
 			std::cout << "Facial parameters: " << std::endl;
 			for (int i = 0; i < 16; i++) {
 				std::cout << (i + 1) << ": " << executor->facialParameters[i] << std::endl;
@@ -58,8 +57,10 @@ int main(int argc, char * argv[]) {
 		}
 		delete executor;
 	}
+	std::cout << "---------------------------------DONE------------------------------------------" << std::endl;
 	std::cout << "amount of photos checked: " << amountOfPhotos << std::endl;
 	std::cout << "amount of photos failed: " << amountOfFailedRecognitions << std::endl;
+	std::cout << "percentage of succesfull recognitions: " << (amountOfFailedRecognitions / amountOfPhotos) * 100.0f << std::endl;
 	system("pause");
 	return 1;
 }
@@ -76,7 +77,7 @@ int main(int argc, char * argv[]) {
 bool executeSteps(DLLExecution * executor) {
 
 	//Execute the four Pre-processing steps
-	if (!executor->executePreProcessingStep1(false)) {
+	if (!executor->executePreProcessingStep1(true)) {
 		std::cout << "Pre-processing step 1 failed!" << std::endl;
 		return false;
 	}
