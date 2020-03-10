@@ -9,44 +9,57 @@
 #include "HereBeDragons.h"
 #include "ImageFactory.h"
 #include "DLLExecution.h"
+#include <filesystem> //filesystem for iteratering through the maps
+#include <string>
 
 void drawFeatureDebugImage(IntensityImage &image, FeatureMap &features);
 bool executeSteps(DLLExecution * executor);
 
 int main(int argc, char * argv[]) {
 
-	ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	//ImageFactory::setImplementation(ImageFactory::STUDENT);
+	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
+	ImageFactory::setImplementation(ImageFactory::STUDENT);
 
+	std::string pathTofolder = "C:\\Users\\oscar\\HU-Vision-1819-Base-OscarKromhout-JustinVanZiel\\testsets\\Set B\\TestSet Images";
+	ImageIO::debugFolder = pathTofolder;
+	ImageIO::isInDebugMode = false; //If set to false the ImageIO class will skip any image save function calls
+	int amountOfPhotos = 0;
+	int amountOfFailedRecognitions = 0;
 
-	ImageIO::debugFolder = "D:\\Users\\Rolf\\Downloads\\FaceMinMin";
-	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
-
-
-
-
-	RGBImage * input = ImageFactory::newRGBImage();
-	if (!ImageIO::loadImage("D:\\Users\\Rolf\\Downloads\\TestA5.jpg", *input)) {
-		std::cout << "Image could not be loaded!" << std::endl;
-		system("pause");
-		return 0;
-	}
-
-
-	ImageIO::saveRGBImage(*input, ImageIO::getDebugFileName("debug.png"));
-
-	DLLExecution * executor = new DLLExecution(input);
-
-
-	if (executeSteps(executor)) {
-		std::cout << "Face recognition successful!" << std::endl;
-		std::cout << "Facial parameters: " << std::endl;
-		for (int i = 0; i < 16; i++) {
-			std::cout << (i+1) << ": " << executor->facialParameters[i] << std::endl;
+	//use the namespace fs as filesystem
+	namespace fs = std::filesystem;
+	//do all steps in a for loop and try every photo
+	// i'm using the library filesystem for this.
+	for (const auto& entry : fs::directory_iterator(pathTofolder)) {
+		amountOfPhotos++;
+		RGBImage* input = ImageFactory::newRGBImage();
+		std::string pathToPhoto = entry.path().string();
+		if (!ImageIO::loadImage(pathToPhoto, *input)) {
+			std::cout << "Image could not be loaded!" << std::endl;
+			system("pause");
+			return 0;
 		}
-	}
 
-	delete executor;
+
+		ImageIO::saveRGBImage(*input, ImageIO::getDebugFileName("debug.png"));
+
+		DLLExecution* executor = new DLLExecution(input);
+
+
+		if (executeSteps(executor)) {
+			std::cout << "Face recognition successful!" << std::endl;
+			std::cout << "Facial parameters: " << std::endl;
+			for (int i = 0; i < 16; i++) {
+				std::cout << (i + 1) << ": " << executor->facialParameters[i] << std::endl;
+			}
+		}
+		else {
+			amountOfFailedRecognitions++;
+		}
+		delete executor;
+	}
+	std::cout << "amount of photos checked: " << amountOfPhotos << std::endl;
+	std::cout << "amount of photos failed: " << amountOfFailedRecognitions << std::endl;
 	system("pause");
 	return 1;
 }

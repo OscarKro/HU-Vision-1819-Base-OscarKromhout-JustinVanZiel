@@ -2,6 +2,7 @@
 #include "IntensityImageStudent.h"
 #include "PixelType.h"
 
+//intensity methode code for converting a colored image to a gray image
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
 	IntensityImageStudent* newIntensityImage = new IntensityImageStudent(image.getWidth(), image.getHeight());
 
