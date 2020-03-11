@@ -57,10 +57,12 @@ int main(int argc, char * argv[]) {
 		}
 		delete executor;
 	}
+	float failedRecognitionsPercentage = ((float)amountOfFailedRecognitions / (float)amountOfPhotos) * 100.f;
 	std::cout << "---------------------------------DONE------------------------------------------" << std::endl;
 	std::cout << "amount of photos checked: " << amountOfPhotos << std::endl;
 	std::cout << "amount of photos failed: " << amountOfFailedRecognitions << std::endl;
-	std::cout << "percentage of succesfull recognitions: " << (amountOfFailedRecognitions / amountOfPhotos) * 100.0f << std::endl;
+	std::cout << "percentage of succesfull recognitions: " << 100.f - failedRecognitionsPercentage << std::endl;
+	std::cout << "percentage of failed recognitions: " << failedRecognitionsPercentage << std::endl;
 	system("pause");
 	return 1;
 }
