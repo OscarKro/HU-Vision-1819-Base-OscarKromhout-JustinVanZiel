@@ -20,7 +20,8 @@ int main(int argc, char * argv[]) {
 	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
 	ImageFactory::setImplementation(ImageFactory::STUDENT);
 
-	std::string pathTofolder = "C:\\Users\\oscar\\HU-Vision-1819-Base-OscarKromhout-JustinVanZiel\\testsets\\Set B\\TestSet Images";
+	//std::string pathTofolder = "C:\\Users\\oscar\\HU-Vision-1819-Base-OscarKromhout-JustinVanZiel\\testsets\\Set B\\TestSet Images";
+	std::string pathTofolder = "C:\\testmap2_100_fotos";
 	ImageIO::debugFolder = pathTofolder;
 	ImageIO::isInDebugMode = false; //If set to false the ImageIO class will skip any image save function calls
 	int amountOfPhotos = 0;
@@ -32,6 +33,7 @@ int main(int argc, char * argv[]) {
 	// i'm using the library filesystem for this.
 	for (const auto& entry : fs::directory_iterator(pathTofolder)) {
 		amountOfPhotos++;
+		std::cout << "photo number: " << amountOfPhotos << " ";
 		RGBImage* input = ImageFactory::newRGBImage();
 		std::string pathToPhoto = entry.path().string();
 		if (!ImageIO::loadImage(pathToPhoto, *input)) {
