@@ -3,23 +3,6 @@
 #include "PixelType.h"
 #include <algorithm>
 
-//intensity methode code for converting a colored image to a gray image
-//IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
-//	IntensityImageStudent* newIntensityImage = new IntensityImageStudent(image.getWidth(), image.getHeight());
-//
-//	int loopCount = image.getWidth() * image.getHeight();
-//
-//	for (int i = 0; i < loopCount; i++)
-//	{
-//		auto oldRGB = image.getPixel(i);
-//		Intensity newIntensityPixel = (oldRGB.r + oldRGB.g + oldRGB.b) / 3;
-//		//newIntensityPixel = 0;
-//		newIntensityImage->setPixel(i, newIntensityPixel);
-//	}
-//
-//	return newIntensityImage;
-//}
-
 
 
 
@@ -32,16 +15,30 @@
 //	for (int i = 0; i < loopCount; i++)
 //	{
 //		auto oldRGB = image.getPixel(i);
+//		//this is the actual algorithm
 //		Intensity newIntensityPixel = ((0.3f *oldRGB.r) + (0.59f*oldRGB.g) + (0.11f*oldRGB.b));
-//		//newIntensityPixel = 0;
 //		newIntensityImage->setPixel(i, newIntensityPixel);
 //	}
 //
 //	return newIntensityImage;
 //}
 
-
-
+//intensity methode code for converting a colored image to a gray image
+//IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
+//	IntensityImageStudent* newIntensityImage = new IntensityImageStudent(image.getWidth(), image.getHeight());
+//
+//	int loopCount = image.getWidth() * image.getHeight();
+//
+//	for (int i = 0; i < loopCount; i++)
+//	{
+//		auto oldRGB = image.getPixel(i);
+//		//this is the actual algorithm
+//		Intensity newIntensityPixel = (oldRGB.r + oldRGB.g + oldRGB.b) / 3;
+//		newIntensityImage->setPixel(i, newIntensityPixel);
+//	}
+//
+//	return newIntensityImage;
+//}
 
 //Value methode code for converting a colored image to a gray image
 IntensityImage* StudentPreProcessing::stepToIntensityImage(const RGBImage& image) const {
@@ -52,10 +49,10 @@ IntensityImage* StudentPreProcessing::stepToIntensityImage(const RGBImage& image
 	for (int i = 0; i < loopCount; i++)
 	{
 		auto oldRGB = image.getPixel(i);
+		//create a list containing the old values
 		std::initializer_list<unsigned char> tempVec = { oldRGB.r,oldRGB.g,oldRGB.b };
-		auto GValue = std::max(tempVec);
-		Intensity newIntensityPixel = (GValue);
-		//Intensity newIntensityPixel = 0;
+		//this is the actual algorithm (taking the max, that's it)
+		Intensity newIntensityPixel = (std::max(tempVec));
 		newIntensityImage->setPixel(i, newIntensityPixel);
 	}
 

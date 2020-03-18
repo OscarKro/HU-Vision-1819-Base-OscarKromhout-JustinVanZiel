@@ -15,12 +15,14 @@
 void drawFeatureDebugImage(IntensityImage &image, FeatureMap &features);
 bool executeSteps(DLLExecution * executor);
 
+//We rebuild this main so we don't have to use the GUI. We can now give a path to a map you want to test all photo's in (pathTofolder variable). It will then loop over all photo's in that
+//folder and call the processing steps on that photo. The looping is implemented using the filesystem library.
+//We use the student imageshell and the student RGB to intensity implementation. Everything else is default.
 int main(int argc, char * argv[]) {
 
 	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
 	ImageFactory::setImplementation(ImageFactory::STUDENT);
 
-	//std::string pathTofolder = "C:\\Users\\oscar\\HU-Vision-1819-Base-OscarKromhout-JustinVanZiel\\testsets\\Set B\\TestSet Images";
 	std::string pathTofolder = "C:\\testmap2_100_fotos";
 	ImageIO::debugFolder = pathTofolder;
 	ImageIO::isInDebugMode = false; //If set to false the ImageIO class will skip any image save function calls
@@ -30,7 +32,6 @@ int main(int argc, char * argv[]) {
 	//use the namespace fs as filesystem
 	namespace fs = std::filesystem;
 	//do all steps in a for loop and try every photo
-	// i'm using the library filesystem for this.
 	for (const auto& entry : fs::directory_iterator(pathTofolder)) {
 		amountOfPhotos++;
 		std::cout << "photo number: " << amountOfPhotos << " ";
@@ -59,6 +60,7 @@ int main(int argc, char * argv[]) {
 		}
 		delete executor;
 	}
+	//cout the percentages about how much is succeeded and how much has failed ( for the research )
 	float failedRecognitionsPercentage = ((float)amountOfFailedRecognitions / (float)amountOfPhotos) * 100.f;
 	std::cout << "---------------------------------DONE------------------------------------------" << std::endl;
 	std::cout << "amount of photos checked: " << amountOfPhotos << std::endl;
