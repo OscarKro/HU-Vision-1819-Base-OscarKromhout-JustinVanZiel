@@ -23,7 +23,16 @@ int main(int argc, char * argv[]) {
 	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
 	ImageFactory::setImplementation(ImageFactory::STUDENT);
 
-	std::string pathTofolder = "C:\\testmap2_100_fotos";
+	//path to use to test darkened pictures
+	//std::string pathTofolder = "C:\\Darken\\5%";
+	//std::string pathTofolder = "C:\\Darken\\10%";
+	//std::string pathTofolder = "C:\\Darken\\15%";
+
+	//path to use to test lightend pictures
+	//std::string pathTofolder = "C:\\oversaturated\\5%";
+	//std::string pathTofolder = "C:\\oversaturated\\10%";
+	std::string pathTofolder = "C:\\oversaturated\\15%";
+
 	ImageIO::debugFolder = pathTofolder;
 	ImageIO::isInDebugMode = false; //If set to false the ImageIO class will skip any image save function calls
 	int amountOfPhotos = 0;

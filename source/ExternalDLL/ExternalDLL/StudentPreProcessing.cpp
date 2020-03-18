@@ -4,7 +4,24 @@
 #include <algorithm>
 
 
+//Value methode code for converting a colored image to a gray image
+IntensityImage* StudentPreProcessing::stepToIntensityImage(const RGBImage& image) const {
+	IntensityImageStudent* newIntensityImage = new IntensityImageStudent(image.getWidth(), image.getHeight());
 
+	int loopCount = image.getWidth() * image.getHeight();
+
+	for (int i = 0; i < loopCount; i++)
+	{
+		auto oldRGB = image.getPixel(i);
+		//create a list containing the old values
+		std::initializer_list<unsigned char> tempVec = { oldRGB.r,oldRGB.g,oldRGB.b };
+		//this is the actual algorithm (taking the max, that's it)
+		Intensity newIntensityPixel = (std::max(tempVec));
+		newIntensityImage->setPixel(i, newIntensityPixel);
+	}
+
+	return newIntensityImage;
+}
 
 //luminance methode code for converting a colored image to a gray image
 //IntensityImage* StudentPreProcessing::stepToIntensityImage(const RGBImage& image) const {
@@ -39,25 +56,6 @@
 //
 //	return newIntensityImage;
 //}
-
-//Value methode code for converting a colored image to a gray image
-IntensityImage* StudentPreProcessing::stepToIntensityImage(const RGBImage& image) const {
-	IntensityImageStudent* newIntensityImage = new IntensityImageStudent(image.getWidth(), image.getHeight());
-
-	int loopCount = image.getWidth() * image.getHeight();
-
-	for (int i = 0; i < loopCount; i++)
-	{
-		auto oldRGB = image.getPixel(i);
-		//create a list containing the old values
-		std::initializer_list<unsigned char> tempVec = { oldRGB.r,oldRGB.g,oldRGB.b };
-		//this is the actual algorithm (taking the max, that's it)
-		Intensity newIntensityPixel = (std::max(tempVec));
-		newIntensityImage->setPixel(i, newIntensityPixel);
-	}
-
-	return newIntensityImage;
-}
 
 IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &image) const {
 	return nullptr;
