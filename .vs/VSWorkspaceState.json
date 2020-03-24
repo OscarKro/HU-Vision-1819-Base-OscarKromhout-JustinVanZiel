@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\source",
-    "\\source\\ExternalDLL"
+    "\\source\\ExternalDLL",
+    "\\source\\ExternalDLL\\ExternalDLL"
   ],
-  "SelectedNode": "\\source\\ExternalDLL\\ExternalDLL2017.sln",
+  "SelectedNode": "\\source\\ExternalDLL\\ExternalDLL\\StudentExtraction.h",
   "PreviewInSolutionExplorer": false
 }

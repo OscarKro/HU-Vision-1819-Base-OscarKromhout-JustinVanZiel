@@ -19,7 +19,6 @@ public:
 	IntensityImageStudent(const IntensityImageStudent &other);
 	IntensityImageStudent(const int width, const int height);
 	IntensityImageStudent(const RGBImage& image);
-	//~IntensityImageStudent();
 
 	void set(const int width, const int height);
 	void set(const IntensityImageStudent &other);
