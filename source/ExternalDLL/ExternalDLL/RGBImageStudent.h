@@ -18,7 +18,7 @@ public:
 	RGBImageStudent();
 	RGBImageStudent(const RGBImageStudent &other);
 	RGBImageStudent(const int width, const int height);
-	~RGBImageStudent();
+	// ~RGBImageStudent();
 
 	void set(const int width, const int height);
 	void set(const RGBImageStudent &other);

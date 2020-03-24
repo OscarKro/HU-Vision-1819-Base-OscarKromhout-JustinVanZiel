@@ -1,12 +1,18 @@
 #include "StudentPreProcessing.h"
 #include "IntensityImageStudent.h"
 #include "PixelType.h"
+#include "ImageFactory.h"
 #include <algorithm>
-
+// JUS: NOTE, 'IntensityImageStudent.h' weggehaald aangezien we die niet meer gebruiken.
 
 //Value methode code for converting a colored image to a gray image
 IntensityImage* StudentPreProcessing::stepToIntensityImage(const RGBImage& image) const {
-	IntensityImageStudent* newIntensityImage = new IntensityImageStudent(image.getWidth(), image.getHeight());
+    // FHU: Gebruik hier alsjeblieft de ImageFactory:: functies.
+    // FHU: Jou code is namelijk als het goed is niet afhankelijk van je studentIntensityImage.
+    // FHU: Ook je return type geeft aan dat je een IntensityImage teruggeeft maar je geeft een IntensityImageStudent terug.
+	// JUS: DONE, gebruik gemaakt van de ImageFactory:: functies.
+	// JUS: Ook returned het nu een IntensityImage i.p.v. een IntensityImageStudent.
+	IntensityImage* newIntensityImage = ImageFactory::newIntensityImage(image.getWidth(), image.getHeight());
 
 	int loopCount = image.getWidth() * image.getHeight();
 
@@ -21,11 +27,12 @@ IntensityImage* StudentPreProcessing::stepToIntensityImage(const RGBImage& image
 	}
 
 	return newIntensityImage;
+
 }
 
 //luminance methode code for converting a colored image to a gray image
 //IntensityImage* StudentPreProcessing::stepToIntensityImage(const RGBImage& image) const {
-//	IntensityImageStudent* newIntensityImage = new IntensityImageStudent(image.getWidth(), image.getHeight());
+//	IntensityImage* newIntensityImage = ImageFactory::ImplementationStudent::newIntensityImage(image.getWidth(), image.getHeight());
 //
 //	int loopCount = image.getWidth() * image.getHeight();
 //
@@ -42,7 +49,7 @@ IntensityImage* StudentPreProcessing::stepToIntensityImage(const RGBImage& image
 
 //intensity methode code for converting a colored image to a gray image
 //IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
-//	IntensityImageStudent* newIntensityImage = new IntensityImageStudent(image.getWidth(), image.getHeight());
+//	IntensityImage* newIntensityImage = ImageFactory::ImplementationStudent::newIntensityImage(image.getWidth(), image.getHeight());
 //
 //	int loopCount = image.getWidth() * image.getHeight();
 //
